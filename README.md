@@ -1,17 +1,19 @@
 # `microh` [![npm](https://img.shields.io/npm/v/microh.svg)](https://www.npmjs.com/package/microh) [![size](https://img.badgesize.io/https://unpkg.com/microh@latest/dist/microh.min.js.png?label=gzip&color=blue&compression=gzip)](https://unpkg.com/microh@latest/dist/microh.min.js)
 
-A small and simple hyperscript helper utility.
+A small and simple hyperscript wrapper for vdom libraries such as (but not limited to) Preact, React, and Hyperapp.
 
-Allows you to create vdom views conveniently:
+## Features
 
 - optional attrs `h('h1', 'Hello World')`
 - inline classNames `h('button.button.is-primary')`
 - no tag name means div `h('.login-area')`
+- varargs `h('div', 'Hello', 'World', 'the time is', Date.now())`
 
 ```js
 import { h as hyper, render } from 'preact'
 import mh from 'microh'
 
+// create a wrapped instance of h by passing it to microh
 const h = mh(hyper)
 
 const vnode = h('ul.example', [
