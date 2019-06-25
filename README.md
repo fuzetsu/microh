@@ -10,9 +10,9 @@ Allows you to create vdom views conveniently:
 
 ```js
 import { h as hyper, render } from 'preact'
-import bh from 'microh'
+import mh from 'microh'
 
-const h = bh(hyper)
+const h = mh(hyper)
 
 const vnode = h('ul.example', [
   h('li', 'one'),
@@ -29,7 +29,7 @@ render(vnode, document.body)
 ### esm modules
 
 ```js
-import bh from 'https://unpkg.com/microh?module'
+import mh from 'https://unpkg.com/microh?module'
 ```
 
 ### Browser
@@ -37,7 +37,7 @@ import bh from 'https://unpkg.com/microh?module'
 ```html
 <script src="https://unpkg.com/microh"></script>
 <script>
-  const bh = window.microh
+  const mh = window.microh
 </script>
 ```
 
@@ -45,5 +45,5 @@ import bh from 'https://unpkg.com/microh?module'
 
 ```js
 // npm install microh
-const bh = require('microh')
+const mh = require('microh')
 ```
