@@ -59,4 +59,9 @@ o.spec('microh', () => {
     o(attributes).deepEquals({ title: 'test', className: 'test' })
     o(children).deepEquals(['test'])
   })
+  o('can pass components as tag', () => {
+    h({})
+    h(class Cmp {})
+    h(() => {})
+  })
 })

@@ -1,6 +1,7 @@
 const { isArray } = Array
 
 const parseTag = (tag, attrs) => {
+  if (typeof tag != 'string') return tag
   const idx = tag.indexOf('.')
   if (idx >= 0) {
     const className = tag.slice(idx + 1).replace(/\./g, ' ')
