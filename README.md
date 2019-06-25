@@ -22,6 +22,7 @@ const vnode = h('ul.example', [
 
 render(vnode, document.body)
 ```
+[playground](https://flems.io/#0=N4IgZglgNgpgziAXAbVAOwIYFsZJAOgAsAXLKEAGhAGMB7NYmBvEAXwvW10QICsEqdBk2J4IWAA60ATsQAEwOYTkY4SgJ4SY0inOlMAJtrms5YabSxyA5BP0ZqxawB004qbLkAjZecs2sCGoLQhc0VyE4eWUAXm9CAApCTW0ASlcI+ii5ADc0WiM5OMTrAFcofBgAD2wJWGtdZFc5JQTrKAgGm3oYa1SKZtb2zt1rYgB3Wj6BtBaSjq6xwn1e9LQAXTXXfTQjaQS8gphdA1pqUpwGfC8C9VTKEDgYWEcILLwARg-EACYADjYHBAmBweHw1DgAho9EYzB4bHWrCAA)
 
 ## Installation
 
