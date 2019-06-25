@@ -1,0 +1,37 @@
+{
+  "name": "microh",
+  "version": "0.0.1",
+  "description": "a small and simple hyperscript helper",
+  "source": "index.js",
+  "main": "dist/microh.es5.min.js",
+  "module": "dist/microh.min.js",
+  "scripts": {
+    "build": "node build.js && npm test",
+    "test": "ospec test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fuzetsu/microh.git"
+  },
+  "keywords": [
+    "hyperscript",
+    "vdom",
+    "react",
+    "hyperapp",
+    "preact"
+  ],
+  "author": "Daniel Loomer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fuzetsu/microh/issues"
+  },
+  "homepage": "https://github.com/fuzetsu/microh#readme",
+  "devDependencies": {
+    "buble": "^0.19.7",
+    "hyperapp": "^1.2.10",
+    "ospec": "^3.1.0",
+    "preact": "^8.4.2",
+    "react": "^16.8.6",
+    "terser": "^3.17.0"
+  }
+}
