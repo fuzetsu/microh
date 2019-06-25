@@ -12,7 +12,7 @@ Allows you to create vdom views conveniently:
 import { h as hyper, render } from 'preact'
 import bh from 'microh'
 
-const h = bh(h)
+const h = bh(hyper)
 
 const vnode = h('ul.example', [
   h('li', 'one'),
