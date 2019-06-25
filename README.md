@@ -36,7 +36,7 @@ import bh from 'https://unpkg.com/microh?module'
 ```html
 <script src="https://unpkg.com/microh"></script>
 <script>
-  const bh = window.microH
+  const bh = window.microh
 </script>
 ```
 
