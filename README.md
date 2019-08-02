@@ -10,28 +10,28 @@ A small and simple hyperscript wrapper for vdom libraries such as (but not limit
 - varargs `h('div', 'Hello', 'World', 'the time is', Date.now())`
 
 ```js
-import { h as hyper, render } from 'preact'
-import mh from 'microh'
+import { h, render } from 'preact'
+import microh from 'microh'
 
 // create a wrapped instance of h by passing it to microh
-const h = mh(hyper)
+const m = microh(hyper)
 
-const vnode = h('ul.example', [
-  h('li', 'one'),
-  h('li', 'two'),
-  h('li', 'three')
+const vnode = m('ul.example', [
+  m('li', 'one'),
+  m('li', 'two'),
+  m('li', 'three')
 ])
 
 render(vnode, document.body)
 ```
-[playground](https://flems.io/#0=N4IgZglgNgpgziAXAbVAOwIYFsZJAOgAsAXLKEAGhAGMB7NYmBvEAXwvW10QICsEqdBk2J4IWAA60ATsQAEwOYTkY4SgJ4SY0inOlMAJtrms5YabSxyA5BP0ZqxawB004qbLkAjZecs2sCGoLQhc0VyE4eWUAXm9CAApCTW0ASlcI+ii5ADc0WiM5OMTrAFcofBgAD2wJWGtdZFc5JQTrKAgGm3oYa1SKZtb2zt1rYgB3Wj6BtBaSjq6xwn1e9LQAXTXXfTQjaQS8gphdA1pqUpwGfC8C9VTKEDgYWEcILLwARg-EACYADjYHBAmBweHw1DgAho9EYzB4bHWrCAA)
+[playground](https://flems.io/#0=N4IgZglgNgpgziAXAbVAOwIYFsZJAOgAsAXLKEAGhAGMB7NYmBvEAXwvW10QICsEqdBk2J4IWAA60ATsQAEwOYQpzpTACYxpc1nLDTaWOQHIJajNWLGAOmnFTZcrBGoHCeg0ePPXtQjbRbITh5IwBeJxc3AApCAEpbIPoQuQA3NFpNOQisaOMAVyh8GAAPbAlYYxVkWzknPKgIKpN6GGM4ilr640bm42IAd1p2zrQ63J6mlX7CNTaEtABdBds1NE1paPTMmBV1Wmp8nAZ8ACNMgE84yhA4GFhLCGS8ACZEAAY2DhBMHDx8ahwAQ0eiMZg8NiLVhAA)
 
 ## Installation
 
 ### esm modules
 
 ```js
-import mh from 'https://unpkg.com/microh?module'
+import microh from 'https://unpkg.com/microh?module'
 ```
 
 ### Browser
@@ -39,7 +39,7 @@ import mh from 'https://unpkg.com/microh?module'
 ```html
 <script src="https://unpkg.com/microh"></script>
 <script>
-  const mh = window.microh
+  window.microh
 </script>
 ```
 
@@ -47,5 +47,5 @@ import mh from 'https://unpkg.com/microh?module'
 
 ```js
 // npm install microh
-const mh = require('microh')
+const microh = require('microh')
 ```
