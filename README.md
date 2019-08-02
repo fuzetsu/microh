@@ -14,7 +14,7 @@ import { h, render } from 'preact'
 import microh from 'microh'
 
 // create a wrapped instance of h by passing it to microh
-const m = microh(hyper)
+const m = microh(h)
 
 const vnode = m('ul.example', [
   m('li', 'one'),
