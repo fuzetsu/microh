@@ -27,11 +27,11 @@
   },
   "homepage": "https://github.com/fuzetsu/microh#readme",
   "devDependencies": {
-    "buble": "^0.19.7",
+    "buble": "^0.19.8",
     "hyperapp": "^1.2.10",
-    "ospec": "^3.1.0",
-    "preact": "^8.4.2",
-    "react": "^16.8.6",
-    "terser": "^3.17.0"
+    "ospec": "^4.0.0",
+    "preact": "^8.5.1",
+    "react": "^16.9.0",
+    "terser": "^4.1.3"
   }
 }
