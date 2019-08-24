@@ -1,6 +1,6 @@
 {
   "name": "microh",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a small and simple hyperscript helper",
   "source": "index.js",
   "main": "dist/microh.es5.min.js",
@@ -29,9 +29,9 @@
   "devDependencies": {
     "buble": "^0.19.8",
     "hyperapp": "^1.2.10",
-    "ospec": "^4.0.0",
-    "preact": "^8.5.1",
+    "ospec": "^4.0.1",
+    "preact": "^8.5.2",
     "react": "^16.9.0",
-    "terser": "^4.1.3"
+    "terser": "^4.2.0"
   }
 }

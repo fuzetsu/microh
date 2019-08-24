@@ -1,6 +1,6 @@
 /* global require */
 const o = require('ospec')
-const mh = require('./dist/microh.es5')
+const mh = require('./dist/microh.es5.min')
 const react = require('react')
 const preact = require('preact')
 const hyperapp = require('hyperapp')
@@ -60,8 +60,8 @@ o.spec('microh', () => {
     o(children).deepEquals(['test'])
   })
   o('can pass components as tag', () => {
-    h({})
-    h(class Cmp {})
-    h(() => {})
+    o(typeof h({}).tag).equals('object')
+    o(typeof h(class Cmp {}).tag).equals('function')
+    o(typeof h(() => {}).tag).equals('function')
   })
 })

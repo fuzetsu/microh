@@ -12,15 +12,11 @@ const parseTag = (tag, attrs) => {
 }
 
 const microh = h => {
-  const vnode = h('a', { z: 1 })
-  const [tagKey, attrKey] = Object.keys(vnode).filter(k => {
-    const val = vnode[k]
-    return val && (val.z || val == 'a')
-  })
+  const vnode = h('a')
+  const [tagKey] = Object.keys(vnode).filter(k => vnode[k] === 'a')
   return (tag, ...children) => {
     let attrs = children[0]
-    if (attrs && typeof attrs == 'object' && !isArray(attrs) && !attrs[tagKey] && !attrs[attrKey])
-      children.shift()
+    if (attrs && typeof attrs == 'object' && !isArray(attrs) && !attrs[tagKey]) children.shift()
     else attrs = {}
     return h(parseTag(tag, attrs), attrs, children)
   }
