@@ -73,4 +73,20 @@ o.spec('microh', () => {
       props: 'some'
     })
   })
+  o('h.n works', () => {
+    const node = h.n('div.div > p.p > span.span', { title: 'world' }, 'hello')
+    o(node).deepEquals({
+      tag: 'div',
+      attrs: { className: 'div' },
+      children: [
+        {
+          tag: 'p',
+          attrs: { className: 'p' },
+          children: [
+            { tag: 'span', attrs: { className: 'span', title: 'world' }, children: ['hello'] }
+          ]
+        }
+      ]
+    })
+  })
 })

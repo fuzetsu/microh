@@ -18,13 +18,21 @@ const microh = (h, classKey = 'className') => {
     return tag || 'div'
   }
 
-  return (tag, ...children) => {
+  const m = (tag, ...children) => {
     let attrs = children[0]
     if (attrs && typeof attrs == 'object' && !isArray(attrs) && (!attrs[tagKey] || !attrs[attrKey]))
       children.shift()
     else attrs = {}
     return h(parseTag(tag, attrs), attrs, children)
   }
+  m.n = (tags, ...children) => {
+    const parts = tags.split('>')
+    return parts.reduceRight(
+      (child, tag) => m(tag.trim(), child),
+      m(parts.pop().trim(), ...children)
+    )
+  }
+  return m
 }
 
 export default microh
