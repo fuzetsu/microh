@@ -8,7 +8,7 @@ const hyperapp = require('hyperapp')
 const fakeH = (tag, attrs, children) => ({ tag, attrs, children })
 const h = mh(fakeH)
 const reactH = mh(react.createElement)
-const preactH = mh(preact.h)
+const preactH = mh(preact.h, 'class')
 const hyperH = mh(hyperapp.h)
 
 o.spec('microh', () => {
@@ -45,7 +45,7 @@ o.spec('microh', () => {
   o('preact works', () => {
     const { nodeName, attributes, children } = preactH('div.test', { title: 'test' }, 'test')
     o(nodeName).equals('div')
-    o(attributes).deepEquals({ title: 'test', className: 'test' })
+    o(attributes).deepEquals({ title: 'test', class: 'test' })
     o(children).deepEquals(['test'])
   })
   o('react works', () => {
@@ -63,5 +63,14 @@ o.spec('microh', () => {
     o(typeof h({}).tag).equals('object')
     o(typeof h(class Cmp {}).tag).equals('function')
     o(typeof h(() => {}).tag).equals('function')
+  })
+  o('can use either tag or attr key in props but not both', () => {
+    o(reactH('input', { type: 'number' }).props).deepEquals({ type: 'number', children: [] })
+    o(preactH('input', { nodeName: 'div' }).attributes).deepEquals({ nodeName: 'div' })
+    o(hyperH('input', { attributes: 'hello' }).attributes).deepEquals({ attributes: 'hello' })
+    o(reactH('input', { type: 'number', props: 'some' }).props.children[0]).deepEquals({
+      type: 'number',
+      props: 'some'
+    })
   })
 })

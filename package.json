@@ -1,6 +1,6 @@
 {
   "name": "microh",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "a small and simple hyperscript helper",
   "source": "index.js",
   "main": "dist/microh.es5.min.js",
@@ -32,6 +32,6 @@
     "ospec": "^4.0.1",
     "preact": "^8.5.2",
     "react": "^16.9.0",
-    "terser": "^4.2.0"
+    "terser": "^4.2.1"
   }
 }
