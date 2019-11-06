@@ -1,11 +1,12 @@
 /* global require */
+const requireEsm = require('esm')(module)
 const o = require('ospec')
 const mh = require('./dist/microh.es5.min')
 const react = require('react')
 const preact = require('preact')
-const hyperapp = require('hyperapp')
+const hyperapp = requireEsm('hyperapp')
 
-const fakeH = (tag, attrs, children) => ({ tag, attrs, children })
+const fakeH = (tag, attrs, ...children) => ({ tag, attrs, children })
 const h = mh(fakeH)
 const reactH = mh(react.createElement)
 const preactH = mh(preact.h, 'class')
@@ -42,22 +43,58 @@ o.spec('microh', () => {
       children: [['child']]
     })
   )
-  o('preact works', () => {
-    const { nodeName, attributes, children } = preactH('div.test', { title: 'test' }, 'test')
-    o(nodeName).equals('div')
-    o(attributes).deepEquals({ title: 'test', class: 'test' })
-    o(children).deepEquals(['test'])
+  o('preact works - attrs + single child', () => {
+    const { type, props } = preactH('div.test', { title: 'test' }, 'test')
+    o(type).equals('div')
+    // preact/react single child not wrapped in array
+    o(props).deepEquals({ title: 'test', class: 'test', children: 'test' })
   })
-  o('react works', () => {
+  o('preact works - attrs + multi child', () => {
+    const { type, props } = preactH('div.test', { title: 'test' }, 'test', ' ', 'test2')
+    o(type).equals('div')
+    o(props).deepEquals({ title: 'test', class: 'test', children: ['test', ' ', 'test2'] })
+  })
+  o('preact works - no attrs + child', () => {
+    const { type, props } = preactH('div.test', 'test')
+    o(type).equals('div')
+    o(props).deepEquals({ class: 'test', children: 'test' })
+  })
+  o('react works - attrs + single child', () => {
     const { type, props } = reactH('div.test', { title: 'test' }, 'test')
     o(type).equals('div')
-    o(props).deepEquals({ title: 'test', className: 'test', children: ['test'] })
+    o(props).deepEquals({ title: 'test', className: 'test', children: 'test' })
   })
-  o('hyperapp works', () => {
-    const { nodeName, attributes, children } = hyperH('div.test', { title: 'test' }, 'test')
-    o(nodeName).equals('div')
-    o(attributes).deepEquals({ title: 'test', className: 'test' })
-    o(children).deepEquals(['test'])
+  o('react works - attrs + multi child', () => {
+    const { type, props } = reactH('div.test', { title: 'test' }, 'test', ' ', 'test2')
+    o(type).equals('div')
+    o(props).deepEquals({ title: 'test', className: 'test', children: ['test', ' ', 'test2'] })
+  })
+  o('react works - no attrs + child', () => {
+    const { type, props } = reactH('div.test', 'test')
+    o(type).equals('div')
+    o(props).deepEquals({ className: 'test', children: 'test' })
+  })
+  o('hyperapp works - attrs + single child', () => {
+    const { name, props, children } = hyperH('div.test', { title: 'test' }, 'test')
+    o(name).equals('div')
+    o(props).deepEquals({ title: 'test', className: 'test' })
+    o(children[0].name).equals('test')
+  })
+  o('hyperapp works - attrs + multi child', () => {
+    const {
+      name,
+      props,
+      children: [one, two, three] // hyperapp converts text into vnodes with type == 3
+    } = hyperH('div.test', { title: 'test' }, 'test', ' ', 'test2')
+    o(name).equals('div')
+    o(props).deepEquals({ title: 'test', className: 'test' })
+    o([one.name, two.name, three.name]).deepEquals(['test', ' ', 'test2'])
+  })
+  o('hyperapp works - no attrs + child', () => {
+    const { name, props, children } = hyperH('div.test', 'test')
+    o(name).equals('div')
+    o(props).deepEquals({ className: 'test' })
+    o(children[0].name).equals('test')
   })
   o('can pass components as tag', () => {
     o(typeof h({}).tag).equals('object')
@@ -65,10 +102,10 @@ o.spec('microh', () => {
     o(typeof h(() => {}).tag).equals('function')
   })
   o('can use either tag or attr key in props but not both', () => {
-    o(reactH('input', { type: 'number' }).props).deepEquals({ type: 'number', children: [] })
-    o(preactH('input', { nodeName: 'div' }).attributes).deepEquals({ nodeName: 'div' })
-    o(hyperH('input', { attributes: 'hello' }).attributes).deepEquals({ attributes: 'hello' })
-    o(reactH('input', { type: 'number', props: 'some' }).props.children[0]).deepEquals({
+    o(reactH('input', { type: 'number' }).props).deepEquals({ type: 'number' })
+    o(preactH('input', { nodeName: 'div' }).props).deepEquals({ nodeName: 'div' })
+    o(hyperH('input', { attributes: 'hello' }).props).deepEquals({ attributes: 'hello' })
+    o(reactH('input', { type: 'number', props: 'some' }).props.children).deepEquals({
       type: 'number',
       props: 'some'
     })

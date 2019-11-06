@@ -16,15 +16,17 @@ import microh from 'microh'
 // create a wrapped instance of h by passing it to microh
 const m = microh(h)
 
-const vnode = m('ul.example', [
+const vnode = m('ul.list-style',
   m('li', 'one'),
   m('li', 'two'),
-  m('li', 'three')
-])
+  m('li', 'three'),
+  m('li', 'four')
+)
 
 render(vnode, document.body)
 ```
-[playground](https://flems.io/#0=N4IgZglgNgpgziAXAbVAOwIYFsZJAOgAsAXLKEAGhAGMB7NYmBvEAXwvW10QICsEqdBk2J4IWAA60ATsQAEwOYQpzpTACYxpc1nLDTaWOQHIJajNWLGAOmnFTZcrBGoHCeg0ePPXtQjbRbITh5IwBeJxc3AApCAEpbIPoQuQA3NFpNOQisaOMAVyh8GAAPbAlYYxVkWzknPKgIKpN6GGM4ilr640bm42IAd1p2zrQ63J6mlX7CNTaEtABdBds1NE1paPTMmBV1Wmp8nAZ8ACNMgE84yhA4GFhLCGS8ACZEAAY2DhBMHDx8ahwAQ0eiMZg8NiLVhAA)
+
+[playground](https://flems.io/#0=N4IgZglgNgpgziAXAbVAOwIYFsZJAOgAsAXLKEAGhAGMB7NYmBvEAXwvW10QICsEqdBk2J4IWAA60ATsQAEwOYQpzpTACYxpc1nLDTaWOQHIJajNWLGAOmnFTZcrBGoHCeg0ePPXtQjbRbAHoguVcYDEY5DDkAd2kMCQkYdTkINDhiDDRqGDlaMCU5ACMATzkJDDg4dIBzNPliWicXN1shTKc5AF4W30IACkIASlt2+k6ANzRaTR6nAeMAVyh8KAhMgFpM0thjFVs5BeN1-ZN6GGNhikPj05VjYljaK5u0I6xF+5NiQjVL663T4nCBnYxgWhLaRXWyjQJoNRoTTSAbTWYwFTqWjUJY4Bj4YqzUrDSggOAwWCWCATPAARgAzIgAEwADjYHBAmBweHw1GqpKEjGYPDYAF1WEA)
 
 ## Installation
 
@@ -48,4 +50,33 @@ import microh from 'https://unpkg.com/microh?module'
 ```js
 // npm install microh
 const microh = require('microh')
+```
+
+## Usage
+
+**[React](https://github.com/facebook/react)**
+
+```js
+import React from 'react'
+import microh from 'microh'
+
+const m = microh(React.createElement)
+```
+
+**[Preact](https://github.com/preactjs/preact)**
+
+```js
+import { h } from 'preact'
+import microh from 'microh'
+
+const m = microh(h)
+```
+
+**[Hyperapp](https://github.com/JorgeBucaran/hyperapp)**
+
+```js
+import { h } from 'hyperapp'
+import microh from 'microh'
+
+const m = microh(h)
 ```

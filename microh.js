@@ -23,7 +23,7 @@ const microh = (h, classKey = 'className') => {
     if (attrs && typeof attrs == 'object' && !isArray(attrs) && (!attrs[tagKey] || !attrs[attrKey]))
       children.shift()
     else attrs = {}
-    return h(parseTag(tag, attrs), attrs, children)
+    return h(parseTag(tag, attrs), attrs, ...children)
   }
 }
 
