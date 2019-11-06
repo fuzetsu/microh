@@ -19,8 +19,7 @@ const m = microh(h)
 const vnode = m('ul.list-style',
   m('li', 'one'),
   m('li', 'two'),
-  m('li', 'three'),
-  m('li', 'four')
+  m('li', 'three')
 )
 
 render(vnode, document.body)
@@ -79,4 +78,17 @@ import { h } from 'hyperapp'
 import microh from 'microh'
 
 const m = microh(h)
+```
+
+**Other Libraries**
+
+If you're using another vdom library and directly passing the equivalent of the `h()` function to microh doesn't work you can always pass a function that calls the `h()` with any necessary adjustments made.
+
+For example, say a particular vdom library always expects children to be passed as an array, you could handle it like this:
+
+```js
+import { makeElem } from 'some-vdom'
+import microh from 'microh'
+
+const m = microh((tag, props, ...children) => makeElem(tag, props, children))
 ```
