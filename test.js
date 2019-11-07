@@ -1,4 +1,4 @@
-/* global require */
+/* global require module */
 const requireEsm = require('esm')(module)
 const o = require('ospec')
 const mh = require('./dist/microh.es5.min')
