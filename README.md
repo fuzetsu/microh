@@ -16,10 +16,11 @@ import microh from 'microh'
 // create a wrapped instance of h by passing it to microh
 const m = microh(h)
 
-const vnode = m('ul.list-style',
-  m('li', 'one'),
-  m('li', 'two'),
-  m('li', 'three')
+const vnode = m(
+  'ul.list',
+  m('li.list-item', 'one'),
+  m('li.list-item', 'two'),
+  m('li.list-item', 'three')
 )
 
 render(vnode, document.body)
