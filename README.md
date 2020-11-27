@@ -74,11 +74,34 @@ const m = microh(h)
 
 **[Hyperapp](https://github.com/JorgeBucaran/hyperapp)**
 
+For hyperapp 2.0.4 and earlier microh will work out of the box:
+
 ```js
 import { h } from 'hyperapp'
 import microh from 'microh'
 
 const m = microh(h)
+```
+
+For later versions you will have to use this snippet because of changes to how vNodes are structured and how text children are handled:
+
+```js
+import { h, text } from 'hyperapp'
+import microh from 'microh'
+
+const m = microh((tag, props, ...children) =>
+  typeof tag === 'function'
+    ? tag(props, children)
+    : h(
+        tag,
+        props,
+        []
+          .concat(...children)
+          .map((child) =>
+            typeof child === 'string' || typeof child === 'number' ? text(child) : child
+          )
+      )
+)
 ```
 
 **Other Libraries**
