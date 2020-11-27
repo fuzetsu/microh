@@ -1,4 +1,3 @@
-/* global require module */
 const requireEsm = require('esm')(module)
 const o = require('ospec')
 const mh = require('./dist/microh.es5.min')
@@ -10,7 +9,19 @@ const fakeH = (tag, attrs, ...children) => ({ tag, attrs, children })
 const h = mh(fakeH)
 const reactH = mh(react.createElement)
 const preactH = mh(preact.h, 'class')
-const hyperH = mh(hyperapp.h)
+const hyperH = mh((tag, props, ...children) =>
+  typeof tag === 'function'
+    ? tag(props, children)
+    : hyperapp.h(
+        tag,
+        props,
+        []
+          .concat(...children)
+          .map(child =>
+            typeof child === 'string' || typeof child === 'number' ? hyperapp.text(child) : child
+          )
+      )
+)
 
 o.spec('microh', () => {
   o('works', () =>
@@ -75,26 +86,26 @@ o.spec('microh', () => {
     o(props).deepEquals({ className: 'test', children: 'test' })
   })
   o('hyperapp works - attrs + single child', () => {
-    const { name, props, children } = hyperH('div.test', { title: 'test' }, 'test')
-    o(name).equals('div')
+    const { type, props, children } = hyperH('div.test', { title: 'test' }, 'test')
+    o(type).equals('div')
     o(props).deepEquals({ title: 'test', className: 'test' })
-    o(children[0].name).equals('test')
+    o(children[0].type).equals('test')
   })
   o('hyperapp works - attrs + multi child', () => {
     const {
-      name,
+      type,
       props,
       children: [one, two, three] // hyperapp converts text into vnodes with type == 3
     } = hyperH('div.test', { title: 'test' }, 'test', ' ', 'test2')
-    o(name).equals('div')
+    o(type).equals('div')
     o(props).deepEquals({ title: 'test', className: 'test' })
-    o([one.name, two.name, three.name]).deepEquals(['test', ' ', 'test2'])
+    o([one.type, two.type, three.type]).deepEquals(['test', ' ', 'test2'])
   })
   o('hyperapp works - no attrs + child', () => {
-    const { name, props, children } = hyperH('div.test', 'test')
-    o(name).equals('div')
+    const { type, props, children } = hyperH('div.test', 'test')
+    o(type).equals('div')
     o(props).deepEquals({ className: 'test' })
-    o(children[0].name).equals('test')
+    o(children[0].type).equals('test')
   })
   o('can pass components as tag', () => {
     o(typeof h({}).tag).equals('object')

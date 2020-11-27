@@ -29,10 +29,10 @@
   "devDependencies": {
     "buble": "^0.19.8",
     "esm": "^3.2.25",
-    "hyperapp": "^2.0.4",
+    "hyperapp": "^2.0.8",
     "ospec": "^4.1.1",
-    "preact": "^10.4.0",
-    "react": "^16.13.1",
-    "terser": "^4.6.11"
+    "preact": "^10.5.7",
+    "react": "^17",
+    "terser": "^4.8.0"
   }
 }
