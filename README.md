@@ -1,4 +1,4 @@
-# `microh` [![npm](https://img.shields.io/npm/v/microh.svg)](https://www.npmjs.com/package/microh) [![size](https://img.badgesize.io/https://unpkg.com/microh@latest/dist/microh.min.js.png?label=gzip&color=blue&compression=gzip)](https://unpkg.com/microh@latest/dist/microh.min.js)
+# `microh` [![npm](https://img.shields.io/npm/v/microh.svg)](https://www.npmjs.com/package/microh) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/microh)](https://unpkg.com/microh@latest/dist/microh.min.js)
 
 A small and simple hyperscript wrapper for vdom libraries such as (but not limited to) Preact, React, and Hyperapp.
 
@@ -97,7 +97,7 @@ const m = microh((tag, props, ...children) =>
         props,
         []
           .concat(...children)
-          .map((child) =>
+          .map(child =>
             typeof child === 'string' || typeof child === 'number' ? text(child) : child
           )
       )
