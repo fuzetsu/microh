@@ -104,6 +104,8 @@ const m = microh((tag, props, ...children) =>
 )
 ```
 
+If you don't use this custom function microh will still work but you will have to wrap text in `text()` calls yourself and call components as functions directly.
+
 **Other Libraries**
 
 If you're using another vdom library and directly passing the equivalent of the `h()` function to microh doesn't work you can always pass a function that calls the `h()` with any necessary adjustments made.
